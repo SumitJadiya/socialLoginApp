@@ -1,4 +1,3 @@
-const { render } = require('ejs')
 const passport = require('passport')
 
 const router = require('express').Router()
@@ -16,5 +15,9 @@ router.get(
     res.send('login with google')
   }
 )
+
+router.get('/google/callback', passport.authenticate('google'), (req, res) => {
+  res.send(req.user)
+})
 
 module.exports = router
